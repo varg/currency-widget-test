@@ -1,0 +1,131 @@
+// Base styles
+@import url('https://fonts.googleapis.com/css?family=Cairo:400,700,900')
+
+@import './responsive.sass'
+
+html, body
+  padding: 0
+  margin: 0
+  font-family: 'Cairo', sans-serif
+
+// Layout
+.container
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-template-rows: auto
+  grid-column-gap: .5rem
+  grid-row-gap: .5rem
+  max-width: 90%
+  margin: 0 auto
+  padding: 1rem 0
+  +phone
+    grid-template-columns: 1fr
+    max-width: 100%
+    padding: .5rem
+    min-width: 320px
+  +tablet
+    grid-template-columns: repeat(2, 1fr)
+    max-width: 100%
+    padding: 1rem
+  +big-tablet
+    grid-template-columns: repeat(3, 1fr)
+    max-width: 100%
+    padding: 1rem
+
+// Currency Widget styles
+.currency-widget
+  border: 1px solid #c7c7c7
+  background-color: #f0f0f1
+  &-header
+    background-color: #595959
+    color: white
+    text-transform: uppercase
+    text-align: center
+    padding: .25rem
+  &-body
+    display: flex
+    flex-flow: row nowrap
+    padding: .5rem 1rem
+    justify-content: space-between
+    align-items: start
+    min-height: 5rem
+    position: relative
+  &-caption
+    font-size: .75rem
+  &-value
+    font-size: 1.2rem
+    line-height: 1
+    &-main
+    &-aux
+      font:
+        size: 150%
+        weight: bold
+    &-delta
+      vertical-align: sup
+      position: relative
+      top: -.25rem
+  &-option
+    background-color: white
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, .4)
+    border-radius: 2px
+    position: relative
+    flex: 0 1 34%
+    transition: box-shadow .5s ease, color .5s ease, text-shadow .5s ease, background-color .5s ease
+    &:hover
+      box-shadow: 0px 0px 10px 2px #4fabc4
+      text-shadow: 0px 0px 1px rgba(0, 0, 0, .5)
+      cursor: pointer
+    &.sell
+      color: #c9131a
+      &:hover
+        background-color: #fc0d1b
+        color: white
+    &.buy
+      color: #648627
+      text-align: right
+      &:hover
+        background-color: #81cf46
+        color: white
+    &-wrapper
+      position: relative
+      z-index: 2
+      background-color: inherit
+      padding: .25rem
+      border-radius: inherit
+    &-arrow
+      background-color: inherit
+      box-shadow: inherit
+      border-radius: inherit
+      border-top-right-radius: 7px
+      position: absolute
+      top: 50%
+      left: 100%
+      height: 31.1126983722px // initial height, can be anything, set by JS on load
+      width: 31.1126983722px
+      transform: translate(-50%, -50%) rotate(45deg)
+      z-index: 1
+      .buy &
+        border-bottom-left-radius: 7px
+        left: inherit
+        right: 100%
+        transform: translate(50%, -50%) rotate(45deg)
+  &-tendency
+    position: absolute
+    top: .25rem
+    left: 50%
+    transform: translateX(-50%)
+    display: none
+    border:
+      top: 0
+      left: .25rem solid transparent
+      right: .25rem solid transparent
+      bottom: 1rem solid #595959
+    &.positive
+      display: block
+      border-bottom-color: #0f7f11
+    &.negative
+      display: block
+      border-bottom-color: #ff0000
+      transform: rotate(180deg)
+      transform-origin: 25% 50%
+
